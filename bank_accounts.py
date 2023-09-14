@@ -38,3 +38,26 @@ class BankAccount:
             self.getBalance()
         except BlanceException as error:
             print(f'\nWithdraw interrupted. {error}')
+            
+    ## add transfer method
+    def transfer(self, amount, account):
+        try:
+            #print(f"\n'{self.name}'  has a before transfer balance of ${self.balance: .2f}")
+            print('\n**********\n\nBegining transfer.... 🚀')
+            self.viableTransaction(amount)
+            self.withdraw(amount)
+            account.deposit(amount)
+            print('\nTransfer Complete ✅\n\n**********')
+        except BlanceException as error:
+            print(f'transfer interrupted. 👎 {error}')
+            
+            
+# Start a new class and use inheritance from BankAccount    
+    
+class InterestRewardsAcc(BankAccount):
+    def deposit(self, amount):
+        self.balance = self.balance + (amount * 1.05)
+        print("\nDeposit Completed.")
+        self.getBalance()
+        
+        
